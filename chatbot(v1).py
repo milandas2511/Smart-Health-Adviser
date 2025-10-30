@@ -1,14 +1,34 @@
 print("=== Smart Health Adviser ===")
-print("Common symptoms: fever, cough, cold, headache, rash, sneezing, breathing problem, body pain, chills")
+print("Select your main symptoms by number (comma separated):")
+print("1. Fever")
+print("2. Cough")
+print("3. Cold")
+print("4. Headache")
+print("5. Rash")
+print("6. Sneezing")
+print("7. Breathing problem")
+print("8. Body pain")
+print("9. Chills")
+print("10. Itching / Allergy")
 print("-------------------------------------------------------------------")
-
-symptoms = input("Enter your main symptoms (comma separated): ").strip().lower()
-
+symptom_numbers = input("Enter your symptom numbers (comma separated): ").strip()
+symptom_map = {
+    "1": "fever",
+    "2": "cough",
+    "3": "cold",
+    "4": "headache",
+    "5": "rash",
+    "6": "sneeze",
+    "7": "breath",
+    "8": "body pain",
+    "9": "chills",
+    "10": "itch"
+}
+symptoms = [symptom_map.get(num.strip()) for num in symptom_numbers.split(",") if num.strip() in symptom_map]
 print("\n--- Health Advice ---")
-
 # Cold
 if "cold" in symptoms or "sneeze" in symptoms:
-    print("\n☃ You might have a Common Cold.")
+    print("\nYou might have a Common Cold.")
     print("Advice:")
     print("- Drink warm water and rest well.")
     print("- Take steam inhalation to relieve congestion.")
@@ -17,16 +37,16 @@ if "cold" in symptoms or "sneeze" in symptoms:
 
 # Flu
 elif "fever" in symptoms and "body pain" in symptoms:
-    print("\n🤒 You might have Flu.")
+    print("\nYou might have Flu.")
     print("Advice:")
     print("- Take plenty of fluids and rest.")
     print("- Eat food rich in vitamin C (like oranges).")
     print("- Use mild pain relievers if needed.")
     print("- Consult a doctor if fever is high or persistent.")
 
-# Cough
-elif "cough" in symptoms and "throat" in symptoms or "dry cough" in symptoms:
-    print("\n😷 You might have Cough or Throat Infection.")
+# Cough or throat infection
+elif "cough" in symptoms and "headache" in symptoms or "dry cough" in symptoms:
+    print("\nYou might have Cough or Throat Infection.")
     print("Advice:")
     print("- Drink warm water and honey-lemon tea.")
     print("- Avoid dust, smoke, and cold drinks.")
@@ -35,7 +55,7 @@ elif "cough" in symptoms and "throat" in symptoms or "dry cough" in symptoms:
 
 # Dengue
 elif "fever" in symptoms and "rash" in symptoms:
-    print("\n🦟 You might have Dengue Fever.")
+    print("\nYou might have Dengue Fever.")
     print("Advice:")
     print("- Drink plenty of fluids and take rest.")
     print("- Drink papaya leaf juice to improve platelet count.")
@@ -44,7 +64,7 @@ elif "fever" in symptoms and "rash" in symptoms:
 
 # Malaria
 elif "fever" in symptoms and "chills" in symptoms:
-    print("\n🌿 You might have Malaria.")
+    print("\nYou might have Malaria.")
     print("Advice:")
     print("- Take antimalarial medicine as prescribed.")
     print("- Sleep under mosquito nets and prevent mosquito bites.")
@@ -53,7 +73,7 @@ elif "fever" in symptoms and "chills" in symptoms:
 
 # COVID-19
 elif "cough" in symptoms and "breath" in symptoms:
-    print("\n🫁 You might have COVID-19 or a respiratory infection.")
+    print("\nYou might have COVID-19 or a respiratory infection.")
     print("Advice:")
     print("- Isolate yourself and wear a mask.")
     print("- Monitor oxygen levels and temperature.")
@@ -62,14 +82,14 @@ elif "cough" in symptoms and "breath" in symptoms:
 
 # Allergy
 elif "itch" in symptoms or "sneeze" in symptoms:
-    print("\n🤧 You might have an Allergy.")
+    print("\nYou might have an Allergy.")
     print("Advice:")
     print("- Avoid known triggers (dust, pollen, pets, etc.).")
     print("- Keep your room clean and dust-free.")
     print("- Take antihistamines if prescribed.")
     print("- Visit a doctor if symptoms persist.")
 else:
-    print("\n❌ Unable to identify disease from given symptoms.")
+    print("\nUnable to identify disease from given symptoms.")
     print("Please consult a doctor for proper diagnosis.")
 
 print("\nStay Healthy! 💪")
